@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Header from './components/Header.tsx';
 
 const Wrapper = styled.div`
   display:flex;
@@ -33,9 +34,7 @@ const App = () => {
   return (
     <Wrapper>
       <Container>
-        <></>
-        <></>
-        <></>
+        <Header></Header>
       </Container>
     </Wrapper>
   )

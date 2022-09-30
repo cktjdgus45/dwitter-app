@@ -31,9 +31,9 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
-* { font-family: 'Spoqa Han Sans Neo', 'sans-serif'; }
 body {
 	line-height: 1;
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif'; 
 }
 ol, ul {
 	list-style: none;
@@ -50,6 +50,8 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+* { font-family: 'Spoqa Han Sans Neo', 'sans-serif'; }
+
 `
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
