@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from './components/Header.tsx';
+import TweetForm from './components/TweetForm.tsx';
 
 const Wrapper = styled.div`
   display:flex;
@@ -35,6 +36,7 @@ const App = () => {
     <Wrapper>
       <Container>
         <Header></Header>
+        <TweetForm></TweetForm>
       </Container>
     </Wrapper>
   )

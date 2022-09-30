@@ -5,6 +5,15 @@ import App from './App.tsx';
 import { theme } from './theme.ts';
 
 const GlobalStyle = createGlobalStyle`
+/* custom */
+button{
+  border:none;
+}
+input,button{
+  &:focus{
+    outline: none;
+  }
+}
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
