@@ -20,8 +20,16 @@ const Container = styled.div`
   width: 700px;
   height: 100%;
   background-color: ${props => props.theme.color.white};
-
-/* &::-webkit-scrollbar {
+`
+const Board = styled.section`
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 0px 20px ;
+  width: 100%;
+  height: 84%;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
   width: 10px;
 }
 
@@ -31,16 +39,7 @@ const Container = styled.div`
 
 &::-webkit-scrollbar-thumb {
   background: ${props => props.theme.color.bluesky};
-} */
-/* have to scroll to tweets section */
-`
-const Board = styled.section`
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px 0px 20px ;
-  width: 100%;
-  height: 84%;
+} 
 `
 
 const App = () => {
