@@ -14,6 +14,7 @@ const InputTextArea = styled.input`
     font-size: ${props => props.theme.fontSize.small};
     margin: 0 5px;
     height: 40%;
+    border: 2px dotted ${props => props.theme.color.bluesky};
     `
 const SubmitButton = styled.button`
     display: flex;
