@@ -5,7 +5,14 @@ import App from './App.tsx';
 import { theme } from './theme.ts';
 
 const GlobalStyle = createGlobalStyle`
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
 /* custom */
+* {
+	 box-sizing: border-box;
+	font-family: 'Spoqa Han Sans Neo', 'sans-serif'; 
+}
+
 button{
   border:none;
 }
@@ -14,7 +21,6 @@ input,button{
     outline: none;
   }
 }
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -35,6 +41,10 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+/* custom */
+body{
+	font-family: 'Spoqa Han Sans Neo', 'sans-serif'; 
+}
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -42,7 +52,6 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-  font-family: 'Spoqa Han Sans Neo', 'sans-serif'; 
 }
 ol, ul {
 	list-style: none;
@@ -59,17 +68,17 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-* { font-family: 'Spoqa Han Sans Neo', 'sans-serif'; }
+
 
 `
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <GlobalStyle />
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>
+	<React.StrictMode>
+		<GlobalStyle />
+		<ThemeProvider theme={theme}>
+			<App />
+		</ThemeProvider>
+	</React.StrictMode>
 );
 

@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+// @ts-ignore
 import Header from './components/Header.tsx';
+// @ts-ignore
 import TweetForm from './components/TweetForm.tsx';
+// @ts-ignore
+import Tweets from './components/Tweets.tsx';
 
 const Wrapper = styled.div`
   display:flex;
@@ -30,13 +34,25 @@ const Container = styled.div`
 } */
 /* have to scroll to tweets section */
 `
+const Board = styled.section`
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 0px 20px ;
+  width: 100%;
+  height: 84%;
+  background-color: ${props => props.theme.color.bluesky};
+`
 
 const App = () => {
   return (
     <Wrapper>
       <Container>
-        <Header></Header>
-        <TweetForm></TweetForm>
+        <Header />
+        <TweetForm />
+        <Board>
+          <Tweets />
+        </Board>
       </Container>
     </Wrapper>
   )
