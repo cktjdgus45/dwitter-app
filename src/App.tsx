@@ -41,7 +41,6 @@ const Board = styled.section`
   padding: 40px 20px 0px 20px ;
   width: 100%;
   height: 84%;
-  background-color: ${props => props.theme.color.bluesky};
 `
 
 const App = () => {

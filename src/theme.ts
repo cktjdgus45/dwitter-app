@@ -5,7 +5,7 @@ export const theme: DefaultTheme = {
         big: '48px',
         middle: '24px',
         small: '16px',
-        verySmall: '8px',
+        verySmall: '11px',
     },
     color: {
         blue: '#25316D',
