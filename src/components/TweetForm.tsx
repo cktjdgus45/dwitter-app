@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Form = styled.form`
@@ -32,9 +32,18 @@ const SubmitButton = styled.button`
     cursor: pointer;
 `
 const TweetForm = () => {
+    const [value, setValue] = useState<string>();
+    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log('form is submitted!');
+        setValue(() => "");
+    }
+    const onChange = (event) => {
+        setValue(event.target.value);
+    }
     return (
-        <Form>
-            <InputTextArea placeholder='Edit your tweet'></InputTextArea>
+        <Form onSubmit={onSubmit}>
+            <InputTextArea value={value || ""} onChange={onChange} placeholder='Edit your tweet'></InputTextArea>
             <SubmitButton>Post</SubmitButton>
         </Form>
     )
