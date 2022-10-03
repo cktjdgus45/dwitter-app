@@ -10,7 +10,7 @@ type Tweet = {
 interface IEditor {
     create(tweet: string): void;
     read(): void;
-    update(target: string): void;
+    update(text: string, targetId: number): void;
     delete(target: string): void;
 }
 
@@ -57,8 +57,13 @@ export default class TweetEditor implements IEditor {
     async read() {
         return [...this.tweets];
     }
-    async update(target) {
-        console.log(target);
+    async update(text, targetId) {
+        const tweet = this.tweets.find(tweet => tweet.id === targetId);
+        if (!tweet) {
+            throw new Error('fail to find');
+        }
+        tweet.text = text;
+        return tweet;
     }
     async delete(target) {
         console.log(target);

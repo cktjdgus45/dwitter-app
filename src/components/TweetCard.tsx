@@ -1,11 +1,14 @@
 import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
+// @ts-ignore
+import EditTweetForm from './EditTweetForm.tsx';
 
 const Card = styled.div`
     display: grid;
     grid-template-columns: 15% 75% 10%;
     width: 100%;
-    height: 120px;
+    height: auto;
     margin-bottom: 15px;
     box-shadow: ${props => props.theme.boxShadow};
 `;
@@ -88,11 +91,13 @@ type TweetEditor = {
 interface IProps {
     tweetEditor: TweetEditor;
     tweet: Tweet;
+    onUpdate: Function;
 }
 
-const TweetCard = ({ tweet, tweetEditor }: IProps) => {
+const TweetCard = ({ tweet, tweetEditor, onUpdate }: IProps) => {
+    const [editing, setEditing] = useState(false);
     const onDelete = () => { };
-    const onEdit = () => { };
+
     return (
         <Card>
             <ProfileField>
@@ -111,10 +116,11 @@ const TweetCard = ({ tweet, tweetEditor }: IProps) => {
                     </CreatedAt>
                 </Writer>
                 <Message>{tweet.text}</Message>
+                {editing && <EditTweetForm setEditing={setEditing} tweet={tweet} onUpdate={onUpdate} tweetEditor={tweetEditor}></EditTweetForm>}
             </WriterField>
             <EditField>
                 <Delete onClick={onDelete}>x</Delete>
-                <Edit onClick={onEdit}>✎</Edit>
+                <Edit onClick={() => setEditing(true)}>✎</Edit>
             </EditField>
         </Card>
     )

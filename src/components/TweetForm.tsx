@@ -56,9 +56,12 @@ const TweetForm = ({ tweetEditor, onCreate }: IProps) => {
     const [value, setValue] = useState<string>();
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log('form is submitted!');
-        value && tweetEditor.create(value).then(tweet => onCreate(tweet))
-        setValue(() => "");
+        value && tweetEditor
+            .create(value)
+            .then(tweet => {
+                setValue(() => "");
+                onCreate(tweet)
+            })
     }
     const onChange = (event) => {
         setValue(event.target.value);
