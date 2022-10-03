@@ -41,6 +41,9 @@ const Tweets = ({ tweetEditor }: IProps) => {
             return prev.map(item => item.id === updated.id ? updated : item);
         });
     }
+    const onDelete = (targetId) => {
+        setTweets(tweets => tweets?.filter(item => item.id !== targetId));
+    }
 
     useEffect(() => {
         tweetEditor
@@ -52,7 +55,7 @@ const Tweets = ({ tweetEditor }: IProps) => {
             <TweetForm onCreate={onCreate} tweetEditor={tweetEditor} />
             {
                 tweets?.map(tweet => (
-                    <TweetCard key={tweet.id} tweet={tweet} onUpdate={onUpdate} tweetEditor={tweetEditor} />
+                    <TweetCard key={tweet.id} tweet={tweet} onDelete={onDelete} onUpdate={onUpdate} tweetEditor={tweetEditor} />
                 ))
             }
         </>

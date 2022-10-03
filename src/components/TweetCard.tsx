@@ -64,14 +64,16 @@ const EditField = styled.div`
     justify-content:center;
 `;
 const Delete = styled.button`
-    margin-bottom: 30px;
     color: ${props => props.theme.color.bluesky};
     cursor:pointer;
-
+    font-size: 20px;
+    background-color: transparent;
 `;
 const Edit = styled.button`
     color: ${props => props.theme.color.bluesky};
     cursor:pointer;
+    font-size: 20px;
+    background-color: transparent;
 `;
 type Tweet = {
     id: number,
@@ -92,11 +94,11 @@ interface IProps {
     tweetEditor: TweetEditor;
     tweet: Tweet;
     onUpdate: Function;
+    onDelete: Function;
 }
 
-const TweetCard = ({ tweet, tweetEditor, onUpdate }: IProps) => {
+const TweetCard = ({ tweet, tweetEditor, onUpdate, onDelete }: IProps) => {
     const [editing, setEditing] = useState(false);
-    const onDelete = () => { };
 
     return (
         <Card>
@@ -119,7 +121,7 @@ const TweetCard = ({ tweet, tweetEditor, onUpdate }: IProps) => {
                 {editing && <EditTweetForm setEditing={setEditing} tweet={tweet} onUpdate={onUpdate} tweetEditor={tweetEditor}></EditTweetForm>}
             </WriterField>
             <EditField>
-                <Delete onClick={onDelete}>x</Delete>
+                <Delete onClick={() => onDelete(tweet.id)}>x</Delete>
                 <Edit onClick={() => setEditing(true)}>✎</Edit>
             </EditField>
         </Card>
