@@ -1,8 +1,9 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+
 // @ts-ignore
-import TweetCard from './TweetCard.tsx';
+import TweetCards from './TweetCards.tsx';
 // @ts-ignore
 import TweetForm from './TweetForm.tsx';
 
@@ -35,15 +36,7 @@ const Tweets = ({ tweetEditor }: IProps) => {
             return [tweet, ...prev];
         });
     }
-    const onUpdate = (updated, id) => {
-        setTweets((prev) => {
-            if (!prev) return;
-            return prev.map(item => item.id === updated.id ? updated : item);
-        });
-    }
-    const onDelete = (targetId) => {
-        setTweets(tweets => tweets?.filter(item => item.id !== targetId));
-    }
+
 
     useEffect(() => {
         tweetEditor
@@ -53,11 +46,8 @@ const Tweets = ({ tweetEditor }: IProps) => {
     return (
         <>
             <TweetForm onCreate={onCreate} tweetEditor={tweetEditor} />
-            {
-                tweets?.map(tweet => (
-                    <TweetCard key={tweet.id} tweet={tweet} onDelete={onDelete} onUpdate={onUpdate} tweetEditor={tweetEditor} />
-                ))
-            }
+            <TweetCards tweets={tweets} setTweets={setTweets} tweetEditor={tweetEditor}></TweetCards>
+
         </>
     )
 }

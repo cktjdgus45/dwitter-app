@@ -65,8 +65,8 @@ export default class TweetEditor implements IEditor {
         tweet.text = text;
         return tweet;
     }
-    async delete(target) {
-        console.log(target);
+    async delete(targetId) {
+        this.tweets = this.tweets.filter(item => item.id !== targetId);
     }
 }
 

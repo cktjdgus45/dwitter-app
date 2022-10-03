@@ -23,21 +23,8 @@ const Board = styled.section`
   display:flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px 0px 20px ;
   width: 100%;
-  height: 84%;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-  width: 10px;
-}
-
-&::-webkit-scrollbar-track {
-  background: ${props => props.theme.color.bluesky};
-}
-
-&::-webkit-scrollbar-thumb {
-  background: ${props => props.theme.color.bluesky};
-} 
+  height :90%;
 `
 
 type TweetEditor = {};
