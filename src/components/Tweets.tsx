@@ -2,6 +2,8 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
+// @ts-ignore
+import TweetForm from './TweetForm.tsx';
 
 const Card = styled.div`
     display: grid;
@@ -79,7 +81,7 @@ type Tweet = {
     email: string,
     profileUrl: string,
     createdAt: string,
-    tweet: string,
+    text: string,
 }
 
 type TweetEditor = {
@@ -94,6 +96,12 @@ interface IProps {
 
 const Tweets = ({ tweetEditor }: IProps) => {
     const [tweets, setTweets] = useState<Tweet[]>();
+    const onCreate = (tweet) => {
+        setTweets((prev) => {
+            if (!prev) return;
+            return [tweet, ...prev];
+        });
+    }
     useEffect(() => {
         tweetEditor
             .read()
@@ -101,6 +109,7 @@ const Tweets = ({ tweetEditor }: IProps) => {
     }, [tweetEditor])
     return (
         <>
+            <TweetForm onCreate={onCreate} tweetEditor={tweetEditor} />
             {
                 tweets?.map(tweet => (
                     <Card>
@@ -119,7 +128,7 @@ const Tweets = ({ tweetEditor }: IProps) => {
                                     {tweet.createdAt}
                                 </CreatedAt>
                             </Writer>
-                            <Message>{tweet.tweet}</Message>
+                            <Message>{tweet.text}</Message>
                         </WriterField>
                         <EditField>
                             <Delete>❌</Delete>

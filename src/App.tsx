@@ -3,8 +3,6 @@ import styled from 'styled-components';
 // @ts-ignore
 import Header from './components/Header.tsx';
 // @ts-ignore
-import TweetForm from './components/TweetForm.tsx';
-// @ts-ignore
 import Tweets from './components/Tweets.tsx';
 
 const Wrapper = styled.div`
@@ -53,7 +51,6 @@ const App = ({ tweetEditor }: IProps) => {
     <Wrapper>
       <Container>
         <Header />
-        <TweetForm tweetEditor={tweetEditor} />
         <Board>
           <Tweets tweetEditor={tweetEditor} />
         </Board>

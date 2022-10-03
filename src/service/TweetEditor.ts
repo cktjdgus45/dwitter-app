@@ -4,7 +4,7 @@ type Tweet = {
     email: string,
     profileUrl: string,
     createdAt: string,
-    tweet: string,
+    text: string,
 }
 
 interface IEditor {
@@ -22,7 +22,7 @@ export default class TweetEditor implements IEditor {
             email: '@popo',
             profileUrl: 'https://lh3.googleusercontent.com/ogw/AOh-ky2bR5KkWnwa8gBbrxQKurPk8144Ls0y7pVzUXBZKw=s32-c-mo',
             createdAt: 'just now',
-            tweet: 'sdfsdfsdf'
+            text: 'sdfsdfsdf'
         },
         {
             id: 1,
@@ -30,7 +30,7 @@ export default class TweetEditor implements IEditor {
             email: '@bob',
             profileUrl: 'https://lh3.googleusercontent.com/ogw/AOh-ky2bR5KkWnwa8gBbrxQKurPk8144Ls0y7pVzUXBZKw=s32-c-mo',
             createdAt: '3 seconds ago',
-            tweet: 'sdfsdfsdf'
+            text: 'sdfsdfsdf'
         },
         {
             id: 2,
@@ -38,19 +38,21 @@ export default class TweetEditor implements IEditor {
             email: '@elli',
             profileUrl: 'https://lh3.googleusercontent.com/ogw/AOh-ky2bR5KkWnwa8gBbrxQKurPk8144Ls0y7pVzUXBZKw=s32-c-mo',
             createdAt: '5 days ago',
-            tweet: 'sdfsdfsdf',
+            text: 'sdfsdfsdf',
         }
     ]
 
-    async create(tweet: string) {
-        this.tweets = [{
+    async create(text: string) {
+        const tweet = {
             id: Date.now(),
             name: 'popo',
             email: '@popo',
             profileUrl: 'https://lh3.googleusercontent.com/ogw/AOh-ky2bR5KkWnwa8gBbrxQKurPk8144Ls0y7pVzUXBZKw=s32-c-mo',
             createdAt: 'just now',
-            tweet
-        }, ...this.tweets]
+            text
+        }
+        this.tweets = [tweet, ...this.tweets];
+        return tweet;
     }
     async read() {
         return [...this.tweets];

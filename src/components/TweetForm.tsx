@@ -32,22 +32,32 @@ const SubmitButton = styled.button`
     cursor: pointer;
 `
 
+type Tweet = {
+    id: number,
+    name: string,
+    email: string,
+    profileUrl: string,
+    createdAt: string,
+    text: string,
+}
+
 type TweetEditor = {
-    create(tweet: string): void;
-    read(): void;
-    update(target: string): void;
-    delete(target: string): void;
+    create(tweet: string): Promise<Tweet>;
+    read(): Promise<Tweet>;
+    update(target: string): Promise<Tweet>;
+    delete(target: string): Promise<Tweet>;
 }
 interface IProps {
     tweetEditor: TweetEditor;
+    onCreate: Function;
 }
 
-const TweetForm = ({ tweetEditor }: IProps) => {
+const TweetForm = ({ tweetEditor, onCreate }: IProps) => {
     const [value, setValue] = useState<string>();
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         console.log('form is submitted!');
-        console.log(value);
+        value && tweetEditor.create(value).then(tweet => onCreate(tweet))
         setValue(() => "");
     }
     const onChange = (event) => {
