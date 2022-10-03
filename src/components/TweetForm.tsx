@@ -31,11 +31,23 @@ const SubmitButton = styled.button`
     margin-right: 5px;
     cursor: pointer;
 `
-const TweetForm = () => {
+
+type TweetEditor = {
+    create(tweet: string): void;
+    read(): void;
+    update(target: string): void;
+    delete(target: string): void;
+}
+interface IProps {
+    tweetEditor: TweetEditor;
+}
+
+const TweetForm = ({ tweetEditor }: IProps) => {
     const [value, setValue] = useState<string>();
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         console.log('form is submitted!');
+        console.log(value);
         setValue(() => "");
     }
     const onChange = (event) => {

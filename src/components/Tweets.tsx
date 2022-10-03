@@ -1,4 +1,6 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const Card = styled.div`
@@ -72,41 +74,35 @@ const Edit = styled.div`
 `;
 
 type Tweet = {
+    id: number,
     name: string,
     email: string,
     profileUrl: string,
     createdAt: string,
-    message: string,
+    tweet: string,
 }
-const tweets: Tweet[] = [
-    {
-        name: 'popo',
-        email: '@popo',
-        profileUrl: 'https://lh3.googleusercontent.com/ogw/AOh-ky2bR5KkWnwa8gBbrxQKurPk8144Ls0y7pVzUXBZKw=s32-c-mo',
-        createdAt: 'just now',
-        message: 'sdfsdfsdf'
-    },
-    {
-        name: 'bob',
-        email: '@bob',
-        profileUrl: 'https://lh3.googleusercontent.com/ogw/AOh-ky2bR5KkWnwa8gBbrxQKurPk8144Ls0y7pVzUXBZKw=s32-c-mo',
-        createdAt: '3 seconds ago',
-        message: 'sdfsdfsdf'
-    },
-    {
-        name: 'elli',
-        email: '@elli',
-        profileUrl: 'https://lh3.googleusercontent.com/ogw/AOh-ky2bR5KkWnwa8gBbrxQKurPk8144Ls0y7pVzUXBZKw=s32-c-mo',
-        createdAt: '5 days ago',
-        message: 'sdfsdfsdf',
-    }
-]
 
-const Tweets = () => {
+type TweetEditor = {
+    create(tweet: string): Promise<[]>;
+    read(): Promise<[]>;
+    update(target: string): Promise<[]>;
+    delete(target: string): Promise<[]>;
+}
+interface IProps {
+    tweetEditor: TweetEditor;
+}
+
+const Tweets = ({ tweetEditor }: IProps) => {
+    const [tweets, setTweets] = useState<Tweet[]>();
+    useEffect(() => {
+        tweetEditor
+            .read()
+            .then(tweets => setTweets([...tweets]));
+    }, [tweetEditor])
     return (
         <>
             {
-                tweets.map(tweet => (
+                tweets?.map(tweet => (
                     <Card>
                         <ProfileField>
                             <Profile filePath={tweet.profileUrl}></Profile>
@@ -123,7 +119,7 @@ const Tweets = () => {
                                     {tweet.createdAt}
                                 </CreatedAt>
                             </Writer>
-                            <Message>{tweet.message}</Message>
+                            <Message>{tweet.tweet}</Message>
                         </WriterField>
                         <EditField>
                             <Delete>❌</Delete>

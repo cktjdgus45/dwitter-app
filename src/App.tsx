@@ -42,14 +42,20 @@ const Board = styled.section`
 } 
 `
 
-const App = () => {
+type TweetEditor = {};
+interface IProps {
+  tweetEditor: TweetEditor;
+}
+
+const App = ({ tweetEditor }: IProps) => {
+
   return (
     <Wrapper>
       <Container>
         <Header />
-        <TweetForm />
+        <TweetForm tweetEditor={tweetEditor} />
         <Board>
-          <Tweets />
+          <Tweets tweetEditor={tweetEditor} />
         </Board>
       </Container>
     </Wrapper>

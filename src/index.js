@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import App from './App.tsx';
+import TweetEditor from './service/TweetEditor.ts';
 import { theme } from './theme.ts';
 
 const GlobalStyle = createGlobalStyle`
@@ -71,13 +72,15 @@ table {
 
 
 `
+const tweetEditor = new TweetEditor();
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
 		<GlobalStyle />
 		<ThemeProvider theme={theme}>
-			<App />
+			<App tweetEditor={tweetEditor} />
 		</ThemeProvider>
 	</React.StrictMode>
 );
