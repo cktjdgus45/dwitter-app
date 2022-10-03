@@ -1,11 +1,12 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+// @ts-ignore
+import AddTweetForm from './AddTweetForm.tsx';
 
 // @ts-ignore
 import TweetCards from './TweetCards.tsx';
-// @ts-ignore
-import TweetForm from './TweetForm.tsx';
+
 
 
 
@@ -45,7 +46,7 @@ const Tweets = ({ tweetEditor }: IProps) => {
     }, [tweetEditor])
     return (
         <>
-            <TweetForm onCreate={onCreate} tweetEditor={tweetEditor} />
+            <AddTweetForm onCreate={onCreate} tweetEditor={tweetEditor} />
             <TweetCards tweets={tweets} setTweets={setTweets} tweetEditor={tweetEditor}></TweetCards>
 
         </>
