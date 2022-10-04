@@ -46,7 +46,7 @@ const Name = styled.span`
     color: ${props => props.theme.color.black};
     font-size: ${props => props.theme.fontSize.small};
 `;
-const Email = styled.span`
+const UserName = styled.span`
     margin: 0 5px;
     color: ${props => props.theme.color.bluesky};
     font-size: ${props => props.theme.fontSize.verySmall};
@@ -78,7 +78,7 @@ const Edit = styled.button`
 type Tweet = {
     id: number,
     name: string,
-    email: string,
+    username: string,
     profileUrl: string,
     createdAt: string,
     text: string,
@@ -110,9 +110,9 @@ const TweetCard = ({ tweet, tweetEditor, onUpdate, onDelete }: IProps) => {
                     <Name>
                         {tweet.name}
                     </Name>
-                    <Email>
-                        {tweet.email}
-                    </Email>
+                    <UserName>
+                        {tweet.username}
+                    </UserName>
                     <CreatedAt>
                         {tweet.createdAt}
                     </CreatedAt>

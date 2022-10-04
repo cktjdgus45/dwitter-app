@@ -13,7 +13,7 @@ import TweetCards from './TweetCards.tsx';
 type Tweet = {
     id: number,
     name: string,
-    email: string,
+    username: string,
     profileUrl: string,
     createdAt: string,
     text: string,

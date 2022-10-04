@@ -1,7 +1,7 @@
 type Tweet = {
     id: number,
     name: string,
-    email: string,
+    username: string,
     profileUrl: string,
     createdAt: string,
     text: string,
@@ -19,7 +19,7 @@ export default class TweetEditor implements IEditor {
         {
             id: 0,
             name: 'popo',
-            email: '@popo',
+            username: '@popo',
             profileUrl: 'https://lh3.googleusercontent.com/ogw/AOh-ky2bR5KkWnwa8gBbrxQKurPk8144Ls0y7pVzUXBZKw=s32-c-mo',
             createdAt: 'just now',
             text: 'sdfsdfsdf'
@@ -27,7 +27,7 @@ export default class TweetEditor implements IEditor {
         {
             id: 1,
             name: 'bob',
-            email: '@bob',
+            username: '@bob',
             profileUrl: 'https://lh3.googleusercontent.com/ogw/AOh-ky2bR5KkWnwa8gBbrxQKurPk8144Ls0y7pVzUXBZKw=s32-c-mo',
             createdAt: '3 seconds ago',
             text: 'sdfsdfsdf'
@@ -35,7 +35,7 @@ export default class TweetEditor implements IEditor {
         {
             id: 2,
             name: 'elli',
-            email: '@elli',
+            username: '@elli',
             profileUrl: 'https://lh3.googleusercontent.com/ogw/AOh-ky2bR5KkWnwa8gBbrxQKurPk8144Ls0y7pVzUXBZKw=s32-c-mo',
             createdAt: '5 days ago',
             text: 'sdfsdfsdf',
@@ -46,7 +46,7 @@ export default class TweetEditor implements IEditor {
         const tweet = {
             id: Date.now(),
             name: 'popo',
-            email: '@popo',
+            username: '@popo',
             profileUrl: 'https://lh3.googleusercontent.com/ogw/AOh-ky2bR5KkWnwa8gBbrxQKurPk8144Ls0y7pVzUXBZKw=s32-c-mo',
             createdAt: 'just now',
             text
