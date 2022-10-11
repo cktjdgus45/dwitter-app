@@ -49,7 +49,7 @@ const CancelButton = styled.button`
     cursor:pointer;
 `
 type Tweet = {
-    id: number,
+    id: string,
     name: string,
     username: string,
     profileUrl: string,
@@ -58,10 +58,10 @@ type Tweet = {
 }
 
 type TweetEditor = {
-    create(tweet: string): Promise<Tweet>;
-    read(): Promise<Tweet>;
-    update(target: string, id: number): Promise<Tweet>;
-    delete(target: string): Promise<Tweet>;
+    getTweets(username: string): any;
+    postTweet(text: string): any;
+    updateTweet(targetId: string, text: string): void;
+    deleteTweet(target: string): void;
 }
 interface IProps {
     tweetEditor: TweetEditor;
@@ -72,17 +72,16 @@ interface IProps {
 const EditTweetForm = ({ tweetEditor, onUpdate, tweet, setEditing }: IProps) => {
     const { text, id } = tweet;
     const [value, setValue] = useState<string>(text);
-    const [error, setError] = useState<string>();
     const onSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        value && tweetEditor.update(value, id)
-            .then(updated => {
-                setValue(() => "");
-                onUpdate(updated, id);
-            })
-            .catch((error: Error) => {
-                setError(error.message);
-            })
+        onUpdate(updatedTweet(), id);
+        setEditing(() => false);
+
+        function updatedTweet() {
+            const updated = { ...tweet };
+            updated['text'] = value;
+            return updated;
+        }
     }
     const onChange = (event) => {
         setValue(event.target.value);
@@ -90,7 +89,6 @@ const EditTweetForm = ({ tweetEditor, onUpdate, tweet, setEditing }: IProps) => 
 
     return (
         <Form>
-            {error && <span>{error}</span>}
             <InputTextArea value={value || ""} onChange={onChange} placeholder='Edit your tweet'></InputTextArea>
             <ButtonWrapper>
                 <UpdateButton onClick={onSubmit}>Update</UpdateButton>

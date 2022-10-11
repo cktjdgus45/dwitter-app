@@ -32,20 +32,11 @@ const SubmitButton = styled.button`
     cursor: pointer;
 `
 
-type Tweet = {
-    id: number,
-    name: string,
-    username: string,
-    profileUrl: string,
-    createdAt: string,
-    text: string,
-}
-
 type TweetEditor = {
-    create(tweet: string): Promise<Tweet>;
-    read(): Promise<Tweet>;
-    update(target: string): Promise<Tweet>;
-    delete(target: string): Promise<Tweet>;
+    getTweets(username: string): any;
+    postTweet(text: string): any;
+    updateTweet(targetId: string, text: string): void;
+    deleteTweet(target: string): void;
 }
 interface IProps {
     tweetEditor: TweetEditor;
@@ -57,7 +48,7 @@ const AddTweetForm = ({ tweetEditor, onCreate }: IProps) => {
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         value && tweetEditor
-            .create(value)
+            .postTweet(value)
             .then(tweet => {
                 setValue(() => "");
                 onCreate(tweet)

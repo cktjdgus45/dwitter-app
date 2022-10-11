@@ -72,7 +72,10 @@ table {
 
 
 `
-const tweetEditor = new TweetEditor();
+
+const baseUrl = 'http://localhost:8080';
+
+const tweetEditor = new TweetEditor(baseUrl);
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

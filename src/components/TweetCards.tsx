@@ -24,7 +24,7 @@ const TweetCardsList = styled.ul`
 `
 
 type Tweet = {
-    id: number,
+    id: string,
     name: string,
     username: string,
     profileUrl: string,
@@ -33,10 +33,10 @@ type Tweet = {
 }
 
 type TweetEditor = {
-    create(tweet: string): Promise<[]>;
-    read(): Promise<[]>;
-    update(target: string): Promise<[]>;
-    delete(target: string): Promise<[]>;
+    getTweets(username: string): any;
+    postTweet(text: string): any;
+    updateTweet(targetId: string, text: string): void;
+    deleteTweet(targetId: string): void;
 }
 interface IProps {
     tweets: Tweet[];
@@ -45,13 +45,15 @@ interface IProps {
 }
 
 const TweetCards = ({ tweets, setTweets, tweetEditor }: IProps) => {
-    const onUpdate = (updated, id) => {
+    const onUpdate = (updated: Tweet, id) => {
         setTweets((prev) => {
             if (!prev) return;
             return prev.map(item => item.id === updated.id ? updated : item);
         });
+        tweetEditor.updateTweet(id, updated.text);
     }
     const onDelete = (targetId) => {
+        tweetEditor.deleteTweet(targetId);
         setTweets(tweets => tweets?.filter(item => item.id !== targetId));
     }
     return (

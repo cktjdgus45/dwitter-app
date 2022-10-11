@@ -20,10 +20,10 @@ type Tweet = {
 }
 
 type TweetEditor = {
-    create(tweet: string): Promise<[]>;
-    read(): Promise<[]>;
-    update(target: string): Promise<[]>;
-    delete(target: string): Promise<[]>;
+    getTweets(username: string): any;
+    postTweet(text: string): any;
+    updateTweet(targetId: string, text: string): void;
+    deleteTweet(target: string): void;
 }
 interface IProps {
     tweetEditor: TweetEditor;
@@ -41,14 +41,13 @@ const Tweets = ({ tweetEditor }: IProps) => {
 
     useEffect(() => {
         tweetEditor
-            .read()
+            .getTweets('')
             .then(tweets => setTweets([...tweets]));
     }, [tweetEditor])
     return (
         <>
             <AddTweetForm onCreate={onCreate} tweetEditor={tweetEditor} />
             <TweetCards tweets={tweets} setTweets={setTweets} tweetEditor={tweetEditor}></TweetCards>
-
         </>
     )
 }
