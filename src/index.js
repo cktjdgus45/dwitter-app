@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import App from './App.tsx';
+import HttpClient from './network/http.ts';
 import TweetEditor from './service/TweetEditor.ts';
 import { theme } from './theme.ts';
 
@@ -74,8 +75,9 @@ table {
 `
 
 const baseUrl = 'http://localhost:8080';
+const httpClient = new HttpClient(baseUrl);
 
-const tweetEditor = new TweetEditor(baseUrl);
+const tweetEditor = new TweetEditor(httpClient);
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
